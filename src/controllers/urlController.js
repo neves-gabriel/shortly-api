@@ -26,3 +26,20 @@ export async function postUrl(req, res) {
     res.sendStatus(500);
   }
 }
+
+export async function getShortUrl(req, res) {
+  const { shortUrl } = req.params;
+
+  try {
+    const result = await connection.query(
+      `SELECT id, shorturl, url FROM "urls" WHERE shorturl = $1;`[shortUrl]
+    );
+
+    if (result.rowCount === 0) {
+      return res.sendStatus(404);
+    }
+    res.status(200).send(result.rows[0]);
+  } catch (error) {
+    res.sendStatus(500);
+  }
+}
