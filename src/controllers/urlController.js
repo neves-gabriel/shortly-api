@@ -18,7 +18,9 @@ export async function postUrl(req, res) {
       [user.id, url, shortUrl]
     );
 
-    res.status(201).send(shortUrl);
+    res.status(201).send({
+      shortUrl: shortUrl,
+    });
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
