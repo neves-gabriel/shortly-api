@@ -32,7 +32,7 @@ export async function getShortUrl(req, res) {
 
   try {
     const shortenedUrl = await connection.query(
-      `SELECT id, "shortUrl", url FROM "urls" WHERE "shortUrl" = $1;`,
+      `SELECT id, shorturl, url FROM "urls" WHERE shorturl = $1;`,
       [shortUrl]
     );
 
